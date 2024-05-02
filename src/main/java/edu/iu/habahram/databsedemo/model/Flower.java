@@ -6,13 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(schema = "lectures", name = "flowers")
+@Table(schema = "flowers", name = "flowers")
 public class Flower {
     @Id
     @GeneratedValue
     private int id;
     private String name;
     private float cost;
+    private String event;
+    private String color;
 
     public Flower() {
     }
@@ -40,4 +42,12 @@ public class Flower {
     public void setCost(float cost) {
         this.cost = cost;
     }
+
+    public String getEvent(){return event;}
+
+    public void setEvent(){this.event = event;}
+
+    public String getColor() {return color;}
+
+    public void setColor(String color) {this.color = color;}
 }

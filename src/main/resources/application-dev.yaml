@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:6001/spring-2024
     username: postgres
-    password: password
+    password: Bedford25
 
 
   jpa:

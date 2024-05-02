@@ -1,15 +1,18 @@
 package edu.iu.habahram.databsedemo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
-@Table(schema = "lectures", name="customers")
+@Table(schema = "flowers", name="customers")
 public final class Customer {
     @Id
+    @GeneratedValue
+    private Integer id;
     private  String username;
     private  String password;
     private  String email;
@@ -19,10 +22,12 @@ public final class Customer {
 
     public Customer(String username,
                     String password,
-                    String email) {
+                    String email,
+                    Integer id) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.id =id;
     }
 
     public String getUsername() {
@@ -48,4 +53,8 @@ public final class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Integer getId(){return id;}
+
+    public void setId(int id) { this.id=id;}
 }

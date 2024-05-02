@@ -3,12 +3,10 @@ package edu.iu.habahram.databsedemo.services;
 import edu.iu.habahram.databsedemo.model.Order;
 import edu.iu.habahram.databsedemo.repository.OrderRepository;
 import org.springframework.data.domain.Example;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -32,5 +30,9 @@ public class OrderService {
         Example<Order> example = Example.of(order);
         List<Order> orders = (List<Order>) orderRepository.findAll(example);
         return orders;
+    }
+
+    public Optional<Order> findById(int id){
+        return orderRepository.findById(id);
     }
 }

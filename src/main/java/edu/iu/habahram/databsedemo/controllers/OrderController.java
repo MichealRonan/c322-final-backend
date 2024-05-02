@@ -1,9 +1,7 @@
 package edu.iu.habahram.databsedemo.controllers;
 
 import edu.iu.habahram.databsedemo.model.Order;
-import edu.iu.habahram.databsedemo.repository.OrderRepository;
 import edu.iu.habahram.databsedemo.services.OrderService;
-import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +9,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -38,6 +37,15 @@ public class OrderController {
             username = ((Jwt) principal).getSubject();
         }
         return username;
+    }
+
+    @GetMapping("/{customerid}")
+    public ResponseEntity<Optional<Order>> findById(@PathVariable int customerid) {
+        Optional<Order> order = orderService.findById(customerid);
+        if(order == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(order);
     }
 
     @GetMapping
